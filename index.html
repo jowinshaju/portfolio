@@ -3,83 +3,307 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jowin Shaju - Portfolio</title>
+    <title>Jowin Shaju - DevOps Engineer</title>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; max-width: 900px; margin: 0 auto; padding: 20px; background-color: #f4f7f6; }
-        header { text-align: center; background: #2c3e50; color: #fff; padding: 30px 20px; border-radius: 8px; }
-        header img { width: 150px; height: 150px; border-radius: 50%; object-fit: cover; border: 3px solid #fff; }
-        h1 { margin: 10px 0 5px; }
-        h2 { color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 5px; margin-top: 30px; }
-        .contact-info a { color: #3498db; text-decoration: none; margin: 0 10px; }
-        .section-box { background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-top: 20px; }
-        .job-title { font-weight: bold; color: #2980b9; }
-        .date { font-style: italic; color: #7f8c8d; font-size: 0.9em; }
-        ul { padding-left: 20px; }
+        :root {
+            --primary-color: #0ea5e9;
+            --text-dark: #0f172a;
+            --text-light: #64748b;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        /* Header Section */
+        header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            background: var(--card-bg);
+            padding: 3rem 2rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            margin-bottom: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            header {
+                flex-direction: row;
+                text-align: left;
+                align-items: flex-start;
+                gap: 3rem;
+            }
+        }
+
+        .profile-image {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #fff;
+            box-shadow: 0 10px 15px -3px rgba(14, 165, 233, 0.3);
+            margin-bottom: 1.5rem;
+        }
+
+        .header-content h1 {
+            font-size: 2.5rem;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.5px;
+        }
+
+        .header-content h2 {
+            font-size: 1.25rem;
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .contact-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .contact-links { justify-content: flex-start; }
+        }
+
+        .contact-links a, .contact-links span {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .contact-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Section Layouts */
+        section {
+            margin-bottom: 2.5rem;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #e2e8f0;
+            display: inline-block;
+        }
+
+        .card {
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            margin-bottom: 1rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+            align-items: baseline;
+        }
+
+        .job-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .company {
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+
+        .date {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            font-weight: 500;
+            background: #f1f5f9;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+        }
+
+        ul.task-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        ul.task-list li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: #475569;
+        }
+
+        ul.task-list li::before {
+            content: "•";
+            color: var(--primary-color);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        /* Skills Grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1rem;
+        }
+
+        .skill-card h3 {
+            font-size: 1rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
     </style>
 </head>
 <body>
 
-    <header>
-        <img src="1000351674.jpg" alt="Jowin Shaju Profile Picture">
-        <h1>Jowin Shaju[cite: 1, 2]</h1>
-        <p>JUNIOR AWS/DEVOPS ENGINEER[cite: 1]</p>
-        <div class="contact-info">
-            <a href="mailto:jowinshaju96@gmail.com">jowinshaju96@gmail.com[cite: 1]</a> |
-            <span>+91 8156928650[cite: 1]</span> |
-            <span>Kerala, India[cite: 1]</span> |
-            <a href="https://www.linkedin.com/in/jowin-shaju-6b1a84153" target="_blank">LinkedIn[cite: 1]</a>
-        </div>
-    </header>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <img src="1000351674.jpg" alt="Jowin Shaju Profile Picture" class="profile-image">
+            <div class="header-content">
+                <h1>Jowin Shaju[cite: 1, 2]</h1>
+                <h2>JUNIOR AWS/DEVOPS ENGINEER[cite: 1]</h2>
+                <div class="contact-links">
+                    <span>📍 Kerala, India[cite: 1]</span>
+                    <a href="mailto:jowinshaju96@gmail.com">✉️ jowinshaju96@gmail.com[cite: 1]</a>
+                    <span>📞 +91 8156928650[cite: 1]</span>
+                    <a href="https://www.linkedin.com/in/jowin-shaju-6b1a84153" target="_blank">🔗 LinkedIn Profile[cite: 1]</a>
+                </div>
+                <p>Detail-oriented and highly motivated Junior AWS/DevOps Engineer with hands-on experience in cloud infrastructure automation, CI/CD pipeline implementation, Linux server administration, and containerized application deployment.[cite: 1]</p>
+            </div>
+        </header>
 
-    <div class="section-box">
-        <h2>Professional Summary</h2>
-        <p>Detail-oriented and highly motivated Junior AWS/DevOps Engineer with hands-on experience in cloud infrastructure automation, CI/CD pipeline implementation, Linux server administration, and containerized application deployment.[cite: 1] Skilled in AWS cloud services, Terraform, Docker, Jenkins, Git, and monitoring tools including CloudWatch, Prometheus, Grafana, and ELK Stack.[cite: 1] Experienced in infrastructure provisioning, deployment automation, troubleshooting, and operational optimization within Agile environments.[cite: 1]</p>
-    </div>
+        <!-- Experience Section -->
+        <section>
+            <h2 class="section-title">Work Experience</h2>
+            
+            <div class="card">
+                <div class="card-header">
+                    <div>
+                        <div class="job-title">Sales and Marketing Executive[cite: 1]</div>
+                        <div class="company">AMAZING RUBBER PRODUCTS PVT LTD, Kochi[cite: 1]</div>
+                    </div>
+                    <div class="date">December 2025 - Present[cite: 1]</div>
+                </div>
+                <ul class="task-list">
+                    <li>Identifying and developing new B2B business opportunities and corporate sales leads.[cite: 1]</li>
+                    <li>Managing complete sales cycles from lead generation to deal closure.[cite: 1]</li>
+                    <li>Conducting client meetings, product demonstrations, presentations, and negotiations.[cite: 1]</li>
+                </ul>
+            </div>
 
-    <div class="section-box">
-        <h2>Work Experience</h2>
-        
-        <p><span class="job-title">Sales and Marketing Executive</span> | AMAZING RUBBER PRODUCTS PVT LTD, Kochi, India[cite: 1]<br>
-        <span class="date">December 2025 - Present[cite: 1]</span></p>
-        <ul>
-            <li>Identifying and developing new B2B business opportunities and corporate sales leads.[cite: 1]</li>
-            <li>Conducting client meetings, product demonstrations, presentations, and negotiations.[cite: 1]</li>
-        </ul>
+            <div class="card">
+                <div class="card-header">
+                    <div>
+                        <div class="job-title">Junior AWS/DevOps Engineer[cite: 1]</div>
+                        <div class="company">VANDALAY BUSINESS SOLUTIONS, Kerala[cite: 1]</div>
+                    </div>
+                    <div class="date">March 2022 - November 2023[cite: 1]</div>
+                </div>
+                <ul class="task-list">
+                    <li>Engineered and deployed scalable AWS cloud infrastructure using Terraform (laC).[cite: 1]</li>
+                    <li>Developed and managed CI/CD pipelines using AWS CodePipeline and CodeCommit.[cite: 1]</li>
+                    <li>Containerized and migrated applications using Docker and AWS ECS services.[cite: 1]</li>
+                    <li>Configured monitoring solutions using CloudWatch, Grafana, Prometheus, and ELK Stack.[cite: 1]</li>
+                </ul>
+            </div>
 
-        <p><span class="job-title">Junior AWS/DevOps Engineer</span> | VANDALAY BUSINESS SOLUTIONS, Kerala, India[cite: 1]<br>
-        <span class="date">March 2022 - November 2023[cite: 1]</span></p>
-        <ul>
-            <li>Engineered and deployed scalable AWS cloud infrastructure using Terraform (laC).[cite: 1]</li>
-            <li>Developed and managed CI/CD pipelines using AWS CodePipeline and CodeCommit.[cite: 1]</li>
-            <li>Containerized and migrated applications using Docker and AWS ECS services.[cite: 1]</li>
-        </ul>
+            <div class="card">
+                <div class="card-header">
+                    <div>
+                        <div class="job-title">Server Administrator Intern[cite: 1]</div>
+                        <div class="company">IPSR SOLUTIONS LTD, Kerala[cite: 1]</div>
+                    </div>
+                    <div class="date">June 2021- December 2021[cite: 1]</div>
+                </div>
+                <ul class="task-list">
+                    <li>Monitored and maintained AWS cloud resources including EC2, S3, and VPC.[cite: 1]</li>
+                    <li>Supported Linux workstation setup, administration, and system maintenance activities.[cite: 1]</li>
+                </ul>
+            </div>
+        </section>
 
-        <p><span class="job-title">Server Administrator Intern</span> | IPSR SOLUTIONS LTD, Kerala, India[cite: 1]<br>
-        <span class="date">June 2021- December 2021[cite: 1]</span></p>
-        <ul>
-            <li>Monitored and maintained AWS cloud resources including EC2, S3, and VPC.[cite: 1]</li>
-            <li>Supported Linux workstation setup, administration, and system maintenance activities.[cite: 1]</li>
-        </ul>
-    </div>
+        <!-- Projects Section -->
+        <section>
+            <h2 class="section-title">Key Projects</h2>
+            <div class="skills-grid">
+                <div class="card skill-card">
+                    <h3>Terraform-Based AWS Automation[cite: 1]</h3>
+                    <p>Designed scalable AWS cloud infrastructure using Terraform for automated provisioning and efficient infrastructure management.[cite: 1]</p>
+                </div>
+                <div class="card skill-card">
+                    <h3>CI/CD Pipeline Development[cite: 1]</h3>
+                    <p>Developed automated CI/CD pipelines using Jenkins, AWS CodePipeline, Git, and Docker, streamlining application deployment workflows.[cite: 1]</p>
+                </div>
+                <div class="card skill-card">
+                    <h3>Kubernetes Practice Project[cite: 1]</h3>
+                    <p>Configured Kubernetes environments for deploying and managing scalable containerized workloads and practicing orchestration.[cite: 1]</p>
+                </div>
+            </div>
+        </section>
 
-    <div class="section-box">
-        <h2>Projects</h2>
-        <p><span class="job-title">Terraform-Based AWS Infrastructure Automation:</span> Designed scalable AWS cloud infrastructure using Terraform for automated provisioning and efficient infrastructure management.[cite: 1]</p>
-        <p><span class="job-title">CI/CD Pipeline Development:</span> Developed automated CI/CD pipelines using Jenkins, AWS CodePipeline, Git, and Docker.[cite: 1]</p>
-        <p><span class="job-title">Kubernetes Practice Project:</span> Configured Kubernetes environments for deploying and managing scalable containerized workloads.[cite: 1]</p>
-    </div>
-
-    <div class="section-box">
-        <h2>Education</h2>
-        <p><strong>Graduate Certificate in Project Management</strong> | Algoma University, Mississauga, Canada (2024-2025)[cite: 1]</p>
-        <p><strong>Bachelor of Technology in Computer Science</strong> | SCMS School of Engineering & Technology, Kerala, India (2014-2020)[cite: 1]</p>
-    </div>
-
-    <div class="section-box">
-        <h2>Technical Skills</h2>
-        <p><strong>Cloud & DevOps:</strong> AWS (EC2, S3, ECS, RDS, IAM, VPC), Terraform, Ansible, Jenkins, Docker, Kubernetes.[cite: 1]</p>
-        <p><strong>Systems & Monitoring:</strong> Linux (RHEL, Ubuntu), CloudWatch, Prometheus, Grafana, ELK Stack.[cite: 1]</p>
-        <p><strong>Scripting & DB:</strong> Bash, Python, YAML, MySQL, LAMP Stack.[cite: 1]</p>
+        <!-- Skills & Education Section -->
+        <section>
+            <h2 class="section-title">Technical Skills & Education</h2>
+            <div class="skills-grid">
+                <div class="card skill-card">
+                    <h3>Core Technical Skills</h3>
+                    <ul class="task-list">
+                        <li><strong>Cloud:</strong> AWS (EC2, S3, ECS, RDS, IAM, VPC)[cite: 1]</li>
+                        <li><strong>DevOps:</strong> Terraform, Ansible, Jenkins, Docker, K8s[cite: 1]</li>
+                        <li><strong>Monitoring:</strong> CloudWatch, Prometheus, Grafana, ELK[cite: 1]</li>
+                        <li><strong>OS & Scripting:</strong> Linux (RHEL, Ubuntu), Bash, Python[cite: 1]</li>
+                    </ul>
+                </div>
+                <div class="card skill-card">
+                    <h3>Education History</h3>
+                    <ul class="task-list">
+                        <li><strong>Graduate Certificate in Project Management</strong><br>Algoma University, Canada (2024-2025)[cite: 1]</li>
+                        <li><strong>B.Tech in Computer Science</strong><br>SCMS School of Engineering & Technology, Kerala (2014-2020)[cite: 1]</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
     </div>
 
 </body>
